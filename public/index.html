@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Invoice Generator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="no-print">
+    <h1 id="companyTitle">Invoice Generator</h1>
+  </header>
+
+  <main class="no-print">
+    <!-- ===== Create invoice form ===== -->
+    <section class="panel">
+      <h2>New Invoice</h2>
+      <form id="invoiceForm">
+        <div class="grid">
+          <label>Customer name *<input id="customer_name" required></label>
+          <label>Customer GSTIN<input id="customer_gstin"></label>
+          <label>Invoice date<input type="date" id="invoice_date"></label>
+          <label>GST %<input type="number" id="gst_percent" value="18" min="0" max="100" step="0.01"></label>
+        </div>
+        <label>Customer address<textarea id="customer_address" rows="2"></textarea></label>
+
+        <h3>Items</h3>
+        <table id="itemsTable">
+          <thead><tr><th>Description</th><th>Qty</th><th>Price</th><th>Amount</th><th></th></tr></thead>
+          <tbody></tbody>
+        </table>
+        <button type="button" id="addItem" class="secondary">+ Add item</button>
+
+        <div class="totals">
+          <div>Subtotal: <b id="tSub">0.00</b></div>
+          <div>GST: <b id="tTax">0.00</b></div>
+          <div>Total: <b id="tTotal">0.00</b></div>
+        </div>
+        <button type="submit">Generate Invoice</button>
+        <span id="formMsg"></span>
+      </form>
+    </section>
+
+    <!-- ===== Invoice list ===== -->
+    <section class="panel">
+      <h2>All Invoices</h2>
+      <table id="listTable">
+        <thead><tr><th>No.</th><th>Customer</th><th>Date</th><th>Total</th><th>Status</th><th>Actions</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </section>
+  </main>
+
+  <!-- ===== Printable invoice view ===== -->
+  <section id="invoiceView" class="hidden"></section>
+
+  <script src="app.js"></script>
+</body>
+</html>
